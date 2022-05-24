@@ -1,0 +1,2 @@
+This is a text inside the file.
+I am 25 years old.
