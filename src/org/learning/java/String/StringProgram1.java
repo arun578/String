@@ -80,9 +80,12 @@ public class StringProgram1 {
             char ch1[]={'s','t','r','i','n','g','s'};
             String s2 = new String(ch1);//converting char array to string
             String s3 = new String("example");//creating Java string by new keyword
-            System.out.println(s1);
             System.out.println(s2);
             System.out.println(s3);
+
+            System.out.println("Printing Array "+Arrays.toString(ch1));
+            //OR
+            System.out.println(ch1); //Using Overloaded method of println(char a[])
 
             /*String Conclusions:
                 1. Strings in Java are Objects that are backed internally by a char array. Since arrays are immutable(cannot grow), Strings are immutable as well.
@@ -90,8 +93,9 @@ public class StringProgram1 {
                 2. One main advantage of Java String Pool allows caching of string and reusability.
 
                 3. String Pool in Java is a special storage space in Java heap memory. It is also known as String Constant Pool or String Intern Pool.
-                4. We can create string of single character i.e String charString = "c"; but recommended way is to create char variable if you need single character only. Because
-                char is primitive data type and primitive data types gets space in Stack and we know Stack is facter than heap Memory
+                4.1 We can create string of single character i.e String charString = "c"; but recommended way is to create char variable if you need single character only. Because
+                char is primitive data type and primitive data types gets space in Stack and we know Stack is faster than heap Memory.
+                4.2 Since String is Object type it requires 3 times byte as compare to primitive type.
              */
 
         //String Methods:
@@ -231,13 +235,13 @@ public class StringProgram1 {
             System.out.println(stringChars); //Overloaded Println method that Prints an array of characters and then terminate the line
 
        //10.1
-            System.out.println("10\n public String[] split(String regex) calls method split(regex, 0) ");
+            System.out.println("10.1\n public String[] split(String regex) calls method split(regex, 0) ");
             String strSplit = "String array split method";
             String[] strArray = strSplit.split("\\s"); //Splits this string around matches of the given regular expression.
             System.out.println(Arrays.toString(strArray));
 
        //10.2
-            System.out.println("public String[] split(String regex, int limit)");
+            System.out.println("10.2--> public String[] split(String regex, int limit)");
             String[] s1Array = strSplit.split("\\s",3); //The limit parameter controls the number of times the pattern is applied and therefore affects the length of the resulting array.
                 // If the limit n is greater than zero then the pattern will be applied at most n-1 times, the array's length will be no greater than n, and the array's last entry will contain
                 // all input beyond the last matched delimiter. If n is non-positive or zero then the pattern will be applied as many times as possible and the array can have any length,and trailing empty strings will be discarded.
@@ -245,42 +249,42 @@ public class StringProgram1 {
 
         //11.1 public boolean startsWith(String prefix) --> true if the character sequence represented by the argument is a prefix of the character sequence represented by this string; false otherwise.
             // Note also that true will be returned if the argument is an empty string or is equal to this String object as determined by the equals(Object) method.
-            System.out.println("\n10.1 --> public boolean startsWith(String prefix)");
+            System.out.println("\n11.1 --> public boolean startsWith(String prefix)");
             String strStsrtsWith="java string startsWith method";
             System.out.println(strStsrtsWith.startsWith("ja"));  // true
             System.out.println(strStsrtsWith.startsWith("java string"));   // true
             System.out.println(strStsrtsWith.startsWith("Java string"));  // false Since method startsWith is case-sensitive.
 
             //11.2 strStsrtsWith.startsWith("") will return true
-                System.out.println("10.2 true will be returned if the argument is an empty string");
+                System.out.println("11.2 true will be returned if the argument is an empty string");
                 System.out.println(strStsrtsWith.startsWith("")); //true will be returned if the argument is an empty string
 
             //11.3 startsWith() throws NullPointerException if null is pass in the parameter of the method.
-                System.out.println("10.3 startsWith() throws NullPointerException if null is pass in the parameter of the method.");
+                System.out.println("11.3 startsWith() throws NullPointerException if null is pass in the parameter of the method.");
                 //System.out.println(strStsrtsWith.startsWith(null));
 
             //11.4 Java String startsWith() method internally calls Java String startsWith(String prefix, int offset) Method
-                    System.out.println("10.4 Java String startsWith() method internally calls Java String startsWith(String prefix, int offset) Method");
+                    System.out.println("11.4 Java String startsWith() method internally calls Java String startsWith(String prefix, int offset) Method");
                 // no offset mentioned; hence, offset is 0 in this case.
-                    System.out.println(strStsrtsWith.startsWith("a")); // false
+                    System.out.println(str.startsWith("b")); // false
                 //i.e.
-                    System.out.println(strStsrtsWith.startsWith("j",0)); //false
+                    System.out.println(str.startsWith("b",0)); //false
 
                 // offset is 1
-                System.out.println(str.startsWith("a",1)); // True
+                System.out.println(str.startsWith("b",1)); // True
 
         //12.1
-            System.out.println("\n11.1 --> public boolean endsWith(String suffix)");
+            System.out.println("\n12.1 --> public boolean endsWith(String suffix)");
             String strEndsWith="java string endsWith method";
             System.out.println(strEndsWith.endsWith("d"));//true
             System.out.println(strEndsWith.endsWith("method")); //true
 
             //12.2 strEndsWith.endsWith("") return true for Empty string
-                System.out.println("11.2 true will return if the argument is an empty string because endsWith(CharSequence ch) internally calls startsWith(suffix, value.length - suffix.value.length);");
+                System.out.println("12.2 true will return if the argument is an empty string because endsWith(CharSequence ch) internally calls startsWith(suffix, value.length - suffix.value.length);");
                 System.out.println(strStsrtsWith.endsWith("")); //true
 
             //12.3 strEndsWith.endsWith("method") internally
-                System.out.println("11.3 Method strEndsWith.endsWith(\"method\") internally calls method startsWith(suffix, value.length - suffix.value.length);");
+                System.out.println("12.3 Method strEndsWith.endsWith(\"method\") internally calls method startsWith(suffix, value.length - suffix.value.length);");
                 System.out.println(strStsrtsWith.startsWith("method", strStsrtsWith.length() - "method".length())); //true
 
 
@@ -308,10 +312,12 @@ public class StringProgram1 {
         //14.1
             System.out.println("\n14.1 --> public String replace(char oldChar, char newChar): Returns a string resulting from replacing all occurrences of oldChar in this string with newChar.");
             String strRemove = "replace method example";
+            System.out.println(strRemove);
             System.out.println(strRemove.replace('r','R')); //public String replace(char oldChar, char newChar)
 
         //14.2
             System.out.println("14.2 --> public String replace(CharSequence target, CharSequence replacement): Replaces each substring of this string that matches the literal target sequence with the specified literal replacement sequence.");
+            System.out.println(strRemove);
             System.out.println(strRemove.replace("replace", "REPLACE")); //public String replace(CharSequence target, CharSequence replacement)
 
         //14.3
@@ -322,11 +328,13 @@ public class StringProgram1 {
         //14.4
             System.out.println("14.4 --> public String replaceAll(String regex, String replacement): Replaces each substring of this string that matches the given regular expression with the given replacement.");
             String strReplaceall = "Hey, this is ReplaceAll method. It is used to replace any charsequence with target sequence";
+            System.out.println(strReplaceall);
             System.out.println(strReplaceall.replaceAll(" is", " was"));
 
        ///14.5
             System.out.println("14.5 --> public String replaceFirst(String regex, String replacement): Replaces the first substring of this string that matches the given regular expression with the given replacement.");
             String strReplaceFirst = "Hey, this is ReplaceFirst method. It is used to replace only first charsequence with target sequence";
+            System.out.println(strReplaceFirst);
             System.out.println(strReplaceFirst.replaceFirst(" is"," was"));
 
 
@@ -446,7 +454,7 @@ public class StringProgram1 {
             System.out.println("\n19--> public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin): Copies characters from this string into the destination character array.\n" +
                     "The first character to be copied is at index srcBegin; the last character to be copied is at index srcEnd-1");
             String  stringFrom = new String("Hello World");
-            char[] destChar = {2,3,4,5,6,7};
+            char[] destChar = new char[stringFrom.length()];
             stringFrom.getChars(1,4,destChar,0);//Copies characters from this string into the destination character array.
             System.out.println("destchar: "+Arrays.toString(destChar));
 
